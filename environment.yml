@@ -1,0 +1,13 @@
+name: pybrane2025
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - ambertools=23
+  - openmm
+  - rdkit
+  - pyqt
+  - matplotlib
+  - pandas
+  - mdanalysis
+  - pdbfixer
