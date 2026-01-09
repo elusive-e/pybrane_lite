@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>3Dmol.js Hello World</title>
+  <!-- Prefer the official CDN -->
+  <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+
+  <style>
+    html, body { margin:0; height:100%; }
+    /* Use viewport height to avoid 0-height parents */
+    #viewer { position:absolute; inset:0; width:100%; height:100vh; min-height:300px; }
+  </style>
+</head>
+<body>
+  <div id="viewer"></div>
+
+  <script>
+    // Wait for full layout, then create viewer
+    window.addEventListener('load', function () {
+      if (!window.WebGLRenderingContext) {
+        console.error('WebGL not available in this page.');
+        return;
+      }
+
+      element = $3Dmol.createViewer('viewer', { backgroundColor: 'white' });
+
+      pdbData = `
+HETATM    1  C   UNL     1      -0.012   0.000   0.000  1.00  0.00           C
+HETATM    2  H1  UNL     1       0.000   0.000   1.090  1.00  0.00           H
+HETATM    3  H2  UNL     1       1.026   0.000  -0.363  1.00  0.00           H
+HETATM    4  H3  UNL     1      -0.513  -0.889  -0.363  1.00  0.00           H
+HETATM    5  H4  UNL     1      -0.513   0.889  -0.363  1.00  0.00           H
+END
+      `;
+
+      try {
+        element.addModel(pdbData, 'pdb');
+        element.setStyle({}, { sphere: { radius: 0.3 }, stick: {} });
+        element.zoomTo();
+        element.render();
+
+        // If the QWebEngineView changes size after show, keep canvas in sync
+        window.addEventListener('resize', () => { element.resize(); element.render(); });
+
+        // (Optional) detect lost contexts and recreate viewer if needed
+        canvas = document.querySelector('#viewer canvas');
+        if (canvas) {
+          canvas.addEventListener('webglcontextlost', (e) => {
+            e.preventDefault();
+            console.warn('WebGL context lost — reload/recreate viewer.');
+          });
+        }
+      } catch (e) {
+        console.error('3Dmol init error:', e);
+      }
+    });
+  </script>
+</body>
+</html>

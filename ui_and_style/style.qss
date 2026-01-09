@@ -1,0 +1,136 @@
+/* Main Title Label ("PyBRANE") */
+QLabel#Title {
+    font-family: 'Verdana', sans-serif;
+    font-size: 44px;
+    qproperty-alignment: AlignCenter;
+    color: transparent; /* Actual colors applied in HTML */
+}
+QWidget {
+    font-family: 'Verdana', sans-serif;
+}
+/* Subtitle ("Online Presentation" or similar) */
+
+QLabel#Subtext {
+    font-size: 18px;
+    font-weight: 400;
+    color: #1f2933;
+    qproperty-alignment: AlignCenter;
+}
+
+/* Tab Container Background */
+QTabWidget::pane {
+    border: 1px solid #97a9b8;
+    border-top: none;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: #ffffff;
+    padding: 5px;
+    margin-top: -1px;  /* align with tab */
+}
+
+/* Tab Bar Background */
+QTabBar {
+    background: transparent; 
+    
+}
+
+/* Individual Tabs */
+QTabBar::tab {
+    background: #f0f4f8;
+    color: #003344;
+    padding: 5px 10px;
+    border: 1px solid #7296b0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+QTabBar::tab:selected {
+    background: #97a9b8;
+    color: #000000;
+}
+
+QTabBar::tab:hover {
+    background: #7296b0;
+}
+
+/* Navigation Buttons (e.g., Start, Load, Settings) */
+QPushButton {
+    background-color: transparent;
+    border: 1px solid #97a9b8;
+    color: #003344;
+    border-radius: 3px;
+    padding: 5px 16px;
+    font-size: 14px;
+}
+
+QPushButton:hover {
+    background-color: #e0e8ea;
+    border: 1px solid #97a9b8;
+    border-color: transparent;
+    text-decoration: underline;
+    
+}
+
+QPushButton:pressed {
+    background-color: #f0f4f8;
+    border: 1px solid #97a9b8;
+    border-color: transparent;
+}
+
+/* Optional Input Fields */
+QLineEdit, QTextEdit {
+    background-color: #ffffff;
+    border: 1px solid #97a9b8;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 13px;
+    color: #003344;
+}
+/* Analysis Tab buttons*/
+#PybraneAnalysisExpandButton {
+    background-color: #174a7b;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 5px;
+}
+#PybraneAnalysisUpdateButton {
+    background-color: #174a7b;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 5px;
+}
+#PybraneAnalysisAdjustButton {
+    background-color: #174a7b;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* Tooltips */
+QToolTip {
+    background-color: #c8fddf;
+    color: #003344;
+    border: 1px solid #97a9b8;
+    padding: 4px;
+    font-size: 12px;
+    border-radius: 2px;
+}
+
+/* Top menu bar (File, Edit, View, etc.) */
+QMenuBar {
+    background-color: #0d4c67;  /* Deep teal background */
+    color: #ffffff;             /* White text */
+}
+
+QMenuBar::item {
+    background-color: transparent;
+    color: #ffffff;
+    padding: 4px 10px;
+}
+
+/* Main Window Base Color */
+QMainWindow {
+    background: #d4dbe0;
+}

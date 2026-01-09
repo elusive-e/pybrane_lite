@@ -1,0 +1,47 @@
+{
+  "graph1": {
+    "name": "self.main_window.ui.PybraneAnalysisPlot1",
+
+    "label" : "Radius of Gyration",
+    "xunits": "Time (ps)",
+    "yunits": "Radius of Gyration (Å)",
+    "measurement": "Radius of Gyration over Time",
+    "mdfunction": "compute_rg"
+  },
+"graph2": {
+    "name": "self.main_window.ui.PybraneAnalysisPlot2",
+
+    "label" : "Center of Geometry",
+    "xunits": "Time (ps)",
+    "yunits": "Center of Geometry (Å)",
+    "measurement": "Center of Geometry of Protein Over Time",
+    "mdfunction": "compute_rg"
+  },
+"graph3": {
+    "name": "self.main_window.ui.PybraneAnalysisPlot3",
+
+    "label" : "Total Mass",
+    "xunits": "Time (ps)",
+    "yunits": "Total Mass (Å)",
+    "measurement": "Total Mass of Protein Over Time",
+    "mdfunction": "compute_rg"
+  },
+"graph4": {
+    "name": "self.main_window.ui.PybraneAnalysisPlot4",
+
+    "label" : "Center of Mass",
+    "xunits": "Time (ps)",
+    "yunits": "Center of Mass (Å)",
+    "measurement": "Center of Mass of Protein Over Time",
+    "mdfunction": "compute_rg"
+  },
+"graph5": {
+    "name": "self.main_window.ui.PybraneAnalysisPlot5",
+    "label" : "Total Charge",
+    "xunits": "Time (ps)",
+    "yunits": "Total Charge (Å)",
+    "measurement": "Total Charge of Protein Over Time",
+    "mdfunction": "compute_rg"
+  }
+
+}

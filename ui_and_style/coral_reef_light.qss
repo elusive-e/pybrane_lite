@@ -1,0 +1,31 @@
+QWidget {
+            background-color: #f8ffff;
+            color: #2b4b4b;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        QPushButton {
+            background-color: #ffe3e0;
+            border: 1px solid #ff8c69;
+            border-radius: 4px;
+            padding: 5px 10px;
+        }
+        QPushButton:hover {
+            background-color: #ffb5a5;
+        }
+        QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
+            background-color: #f0fafa;
+            border: 1px solid #ff8c69;
+            border-radius: 4px;
+            padding: 4px;
+        }
+        QTabWidget::pane {
+            border: 1px solid #ff8c69;
+        }
+        QTabBar::tab {
+            background: #ffe3e0;
+            padding: 6px;
+        }
+        QTabBar::tab:selected {
+            background: #ff8c69;
+            color: white;
+        }

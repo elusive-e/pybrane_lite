@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>3Dmol.js Diagnostic Page</title>
+  <style>
+    html, body { height:100%; margin:0; font-family:system-ui, sans-serif; }
+    #viewer { position:absolute; inset:0; height:100vh; width:100%; min-height:320px; }
+    #diag {
+      position: fixed; top: 8px; left: 8px; z-index: 9999;
+      background: rgba(0,0,0,0.75); color: #fff; padding: 12px 14px; border-radius: 10px;
+      font: 12px/1.35 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; max-width: 46ch;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+    #diag .ok   { color: #9BE564; }
+    #diag .fail { color: #FF6B6B; }
+    #diag .warn { color: #FFD166; }
+    #diag code  { color:#A3D3FF; }
+    #diag h1 { margin: 0 0 6px 0; font-size: 13px; letter-spacing: .02em; }
+    #diag ul { margin: 6px 0 0 16px; padding:0; }
+    #diag li { margin: 2px 0; }
+    #buttons { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+    button {
+      font: inherit; border: 1px solid #ffffff3a; background:#ffffff14; color:#fff; padding: 6px 8px;
+      border-radius: 8px; cursor: pointer;
+    }
+    button:hover { background:#ffffff25; }
+  </style>
+</head>
+<body>
+  <div id="viewer"></div>
+  <div id="diag">
+    <h1>3Dmol.js Diagnostics</h1>
+    <ul id="status">
+      <li>Booting…</li>
+    </ul>
+    <div id="extra"></div>
+    <div id="buttons">
+      <button id="rerender" disabled>Force render()</button>
+      <button id="reinit" disabled>Recreate viewer</button>
+    </div>
+  </div>
+
+  <script>
+    // === CONFIG ===
+    const CDN_SRC = "https://3dmol.org/build/3Dmol-min.js";
+    // If CDN is blocked, place a local copy next to this HTML and flip USE_CDN=false
+    const USE_CDN = true;
+    const LOCAL_SRC = "./3Dmol-min.js";
+
+    const statusUL = document.getElementById('status');
+    const extraDiv = document.getElementById('extra');
+    const btnRender = document.getElementById('rerender');
+    const btnReinit = document.getElementById('reinit');
+    const viewerDiv = document.getElementById('viewer');
+    let viewer = null;
+
+    function line(text, cls) {
+      const li = document.createElement('li');
+      if (cls) li.className = cls;
+      li.textContent = text;
+      statusUL.appendChild(li);
+      console.log(`[diag] ${text}`);
+    }
+
+    function askv(msg) { const s = document.createElement('div'); s.innerHTML = msg; extraDiv.appendChild(s); }
+
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = src; s.async = true; s.defer = true;
+        s.onload = () => resolve(src);
+        s.onerror = () => reject(new Error("Failed to load: " + src));
+        document.head.appendChild(s);
+      });
+    }
+
+    function webglProbe() {
+      const info = { available: !!window.WebGLRenderingContext, ctx:false, vendor:null, renderer:null };
+      try {
+        const c = document.createElement('canvas');
+        const gl = c.getContext('webgl') || c.getContext('experimental-webgl');
+        info.ctx = !!gl;
+        if (gl) {
+          const ext = gl.getExtension('WEBGL_debug_renderer_info');
+          if (ext) {
+            info.vendor = gl.getParameter(ext.UNMASKED_VENDOR_WEBGL);
+            info.renderer = gl.getParameter(ext.UNMASKED_RENDERER_WEBGL);
+          }
+        }
+      } catch(e) { /* ignore */ }
+      return info;
+    }
+
+    function waitForNonZeroSize(el, timeout=6000) {
+      return new Promise((resolve, reject) => {
+        const start = performance.now();
+        (function tick(){
+          const w = el.clientWidth, h = el.clientHeight;
+          if (w > 0 && h > 0) return resolve({w,h});
+          if (performance.now() - start > timeout) return reject(new Error('viewer div stayed 0×0'));
+          requestAnimationFrame(tick);
+        })();
+      });
+    }
+
+    function attachContextListeners() {
+      const canvas = viewerDiv.querySelector('canvas');
+      if (!canvas) return;
+      canvas.addEventListener('webglcontextlost', (e) => {
+        e.preventDefault();
+        line('WebGL context LOST', 'warn');
+      }, false);
+      canvas.addEventListener('webglcontextrestored', () => {
+        line('WebGL context RESTORED', 'ok');
+        try { viewer.render(); } catch(e) {}
+      }, false);
+    }
+
+    function makeViewer() {
+      // Create or recreate viewer
+      viewerDiv.innerHTML = '';
+      viewer = $3Dmol.createViewer('viewer', { backgroundColor: 'white' });
+      attachContextListeners();
+      btnRender.disabled = false;
+      btnReinit.disabled = false;
+    }
+
+    async function main() {
+      line('Window loaded', 'ok');
+
+      // 1) WebGL environment
+      const gl = webglProbe();
+      if (!gl.available) {
+        line('WebGLRenderingContext missing in this page', 'fail');
+        askv('Tip: ensure <code>QWebEngineSettings.LocalContentCanAccessRemoteUrls=true</code> and try <code>--use-gl=swiftshader</code> flags.');
+        return;
+      }
+      line('WebGL API present', gl.ctx ? 'ok' : 'warn');
+      if (gl.vendor || gl.renderer) {
+        askv(`Vendor: <code>${gl.vendor || 'n/a'}</code><br>Renderer: <code>${gl.renderer || 'n/a'}</code>`);
+      }
+      if (!gl.ctx) {
+        line('Could not create a WebGL context from a test canvas', 'fail');
+        return;
+      }
+
+      // 2) Load 3Dmol.js
+      const src = USE_CDN ? CDN_SRC : LOCAL_SRC;
+      try {
+        await loadScript(src);
+        line(`3Dmol.js loaded (${src})`, 'ok');
+      } catch (e) {
+        line(`3Dmol.js failed to load (${src})`, 'fail');
+        if (USE_CDN) {
+          askv('CDN blocked from file:// ? Enable <code>LocalContentCanAccessRemoteUrls</code> or set <code>USE_CDN=false</code> and place <code>3Dmol-min.js</code> locally.');
+        }
+        return;
+      }
+
+      if (!window.$3Dmol || typeof $3Dmol.createViewer !== 'function') {
+        line('$3Dmol is not defined correctly after script load', 'fail');
+        return;
+      }
+
+      // 3) Ensure viewer div has size (0×0 div is a classic cause of null GL)
+      try {
+        const sz = await waitForNonZeroSize(viewerDiv, 6000);
+        line(`Viewer div size OK: ${sz.w}×${sz.h}`, 'ok');
+      } catch (e) {
+        line('Viewer div size stayed 0×0 (CSS/layout issue)', 'fail');
+        askv('Give #viewer explicit CSS size (e.g., height:100vh) and ensure the parent has non-zero size.');
+        return;
+      }
+
+      // 4) Create viewer and render a tiny methane
+      try {
+        makeViewer();
+        const pdb = [
+          'HETATM    1  C   UNL     1      -0.012   0.000   0.000  1.00  0.00           C',
+          'HETATM    2  H1  UNL     1       0.000   0.000   1.090  1.00  0.00           H',
+          'HETATM    3  H2  UNL     1       1.026   0.000  -0.363  1.00  0.00           H',
+          'HETATM    4  H3  UNL     1      -0.513  -0.889  -0.363  1.00  0.00           H',
+          'HETATM    5  H4  UNL     1      -0.513   0.889  -0.363  1.00  0.00           H',
+          'END'
+        ].join('\n');
+
+        viewer.addModel(pdb, 'pdb');
+        viewer.setStyle({}, { sphere: { radius: 0.3 }, stick: {} });
+        viewer.zoomTo();
+        viewer.render();
+        line('3Dmol viewer created and initial render() succeeded', 'ok');
+
+        // Keep canvas in sync with host widget
+        window.addEventListener('resize', () => { try { viewer.resize(); viewer.render(); } catch(e){} });
+
+      } catch (e) {
+        line('3Dmol initialization error: ' + e.message, 'fail');
+        console.error(e);
+        return;
+      }
+    }
+
+    window.addEventListener('load', main);
+
+    // Buttons
+    btnRender.addEventListener('click', () => {
+      try { viewer && viewer.render(); line('Forced render()', 'ok'); } catch(e){ line('render() threw: ' + e.message, 'fail'); }
+    });
+    btnReinit.addEventListener('click', () => {
+      try {
+        makeViewer();
+        line('Viewer re-created', 'warn');
+      } catch(e){ line('Recreate failed: ' + e.message, 'fail'); }
+    });
+  </script>
+</body>
+</html>

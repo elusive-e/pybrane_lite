@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Settings</class>
+ <widget class="QDialog" name="Settings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>328</width>
+    <height>395</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="SettingsMainGridLayout">
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="SettingsTabWidget">
+     <property name="tabShape">
+      <enum>QTabWidget::TabShape::Rounded</enum>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="SettingsAppearanceTab">
+      <attribute name="title">
+       <string>General</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_12">
+       <item>
+        <widget class="QWidget" name="SettingsAppearanceTabWidget" native="true">
+         <layout class="QVBoxLayout" name="SettingsAppearanceTabWidgetVerticalLayout">
+          <item>
+           <widget class="QPushButton" name="SettingsAppearanceTabDefaultButton">
+            <property name="text">
+             <string>Default Appearnce</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsAppearanceTabFontLabel">
+            <property name="text">
+             <string>Font Family</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFontComboBox" name="SettingsAppearanceTabFontComboBox"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsAppearanceTabTextSizeBox">
+            <property name="text">
+             <string>Text Size</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="SettingsAppearanceTabTextSizeSpinBox"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsAppearanceTabStyleSheetLabel">
+            <property name="text">
+             <string>Load Style Sheet</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="SettingsAppearanceTabLoadQSSButton">
+            <property name="text">
+             <string>Load QSS</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsAppearanceTabThemesLabel">
+            <property name="text">
+             <string>Themes</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="SettingsAppearanceTabThemeComboBox">
+            <item>
+             <property name="text">
+              <string>Default (Light)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Default (Dark)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Sci-Fi (Dark)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Cherry Blossom (Light)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Neon (Dark)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Deep Ocean (Dark)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Sand Storm (Dark)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Desert Oasis (Light)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Coral Reef (Light)</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="SettingsAppearanceTabRESETALLButton">
+         <property name="text">
+          <string>RESET ALL SETTINGS</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="SettingsSearchTab">
+      <attribute name="title">
+       <string>Search</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_13">
+       <item>
+        <widget class="QWidget" name="SettingsSearchTabWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="SettingsSearchTabSearchLabel">
+            <property name="text">
+             <string>Search</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsSearchTabChemSpiKeyLabel">
+            <property name="text">
+             <string>Chem Spider Key</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="SettingsSearchTabChemSpiKeyLineEdit"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsSearchTabDefaultDirectoryLabel">
+            <property name="text">
+             <string>Default Directory</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="SettingsSearchTabDirectoryLineEdit"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="SettingsMembraneGeneratorTab">
+      <attribute name="title">
+       <string>Membrane Generator</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_14">
+       <item>
+        <widget class="QWidget" name="SettingsMembraneGeneratorTabWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="SettingsMembraneGeneratorTabMemGenLabel">
+            <property name="text">
+             <string>Membrane Generator</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsMembraneGeneratorTabDefaultDirectoryLabel">
+            <property name="text">
+             <string>Default Save Directory</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="SettingsMembraneGeneratorTabDirectoryLineEdit"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="SettingsMolViewerTab">
+      <attribute name="title">
+       <string>Molecule Viewer</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_10">
+       <item row="0" column="0">
+        <widget class="QWidget" name="SettingsMolViewerTabWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QLabel" name="SettingsMolViewerTabMolViewerLabel">
+            <property name="text">
+             <string>Molecule Viewer</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsMolViewerTabDefaultSaveLabel">
+            <property name="text">
+             <string>Default Save File Type</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="SettingsMolViewerTabSaveFileComboBox"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsMolViewerTabDefaultImportLabel">
+            <property name="text">
+             <string>Default Import File Type</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="SettingsMolViewerTabImportFileComboBox"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsMolViewerTabAtomColorsLabel">
+            <property name="text">
+             <string>Edit Atom Colors</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="SettingsMolViewerTabAtomColorsButton">
+            <property name="text">
+             <string>Launch</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsMolViewerTabStyleLabel">
+            <property name="text">
+             <string>Display Style</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="SettingsMolViewerTabStyleComboBox"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="SettingsSimulationTab">
+      <attribute name="title">
+       <string>Simulation Setup</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <item row="0" column="0">
+        <widget class="QWidget" name="SettingsSimulationTabMainWidget" native="true">
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="SettingsSimulationTabSimulationLabel">
+            <property name="text">
+             <string>Simulation Setup</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QWidget" name="SettingsSimulationTabTopWidget" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <widget class="QLabel" name="SettingsSimulationTabDefaultDirectoryLabel">
+               <property name="text">
+                <string>Default Save Directory</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="SettingsSimulationTabDirectoryLineEdit"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="SettingsSimulationTabDefaultFFLabel">
+               <property name="text">
+                <string>Path to Default Force Field</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="SettingsSimulationTabForceFieldLineEdit"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QWidget" name="SettingsSimulationTabBottomWidget" native="true">
+            <layout class="QFormLayout" name="formLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="SettingsSimulationTabLoadLabel1">
+               <property name="text">
+                <string>Load Button 1</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QComboBox" name="SettingsSimulationTabLoadComboBox1"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="SettingsSimulationTabLoadLabel2">
+               <property name="text">
+                <string>Load Button 2</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="SettingsSimulationTabLoadComboBox2"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="SettingsSimulationTabLoadLabel3">
+               <property name="text">
+                <string>Load Button 3</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QComboBox" name="SettingsSimulationTabLoadComboBox3"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="SettingsAnalysisTab">
+      <attribute name="title">
+       <string>Analyis Viewer</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_8">
+       <item row="0" column="0">
+        <widget class="QWidget" name="SettingsAnalysisTabWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_10">
+          <item>
+           <widget class="QLabel" name="SettingsAnalysisTabAnalysisViewerLabel">
+            <property name="text">
+             <string>Analysis Viewer</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsAnalysisTabDefaultimportFileLabel">
+            <property name="text">
+             <string>Default Import File Type</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="SettingsAnalysisTabDefaultImportFileComboBox"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsAnalysisTabAtomColorsLabel">
+            <property name="text">
+             <string>Edit Atom Colors</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="SettingsAnalysisTabLaunchAtomColorsButton">
+            <property name="text">
+             <string>Launch</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="SettingsAnalysisTabStyleLabel">
+            <property name="text">
+             <string>Display Style</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="SettingsAnalysisTabStyleComboBox"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="SettingsGraphsTab">
+      <attribute name="title">
+       <string>Graphs</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="0">
+        <widget class="QToolBox" name="SettingsGraphsTabToolBox">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="SettingsGraphTabGraph1Page">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>286</width>
+            <height>180</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Graph 1</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="QWidget" name="SettingsGraph1Widget" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="QLabel" name="SettingsGraph1XUnitsLabel">
+                <property name="text">
+                 <string>Graph 1 X Units</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="SettingsGraph1XUnitsLineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="SettingsGraph1YUnitsLabel">
+                <property name="text">
+                 <string>Graph 1 Y Units</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="SettingsGraph1YUnitsLineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="SettingsGraph1MeasurmentLabel">
+                <property name="text">
+                 <string>Graph 1 Measurement</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="SettingsGraph1MeasurementComboBox">
+                <item>
+                 <property name="text">
+                  <string>Gyration Tensor</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Coming Soon!</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="SettingsGraphTabGraph2Page">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>286</width>
+            <height>180</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Graph 2</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
+            <widget class="QWidget" name="SettingsGraph2Widget" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_6">
+              <item>
+               <widget class="QLabel" name="SettingsGraph2XUnitsLabel">
+                <property name="text">
+                 <string>Graph 2 X Units</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="SettingsGraph2XUnitsLineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="SettingsGraph2YUnitsLabel">
+                <property name="text">
+                 <string>Graph 2 Y Units</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="SettingsGraph2YUnitsLineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="SettingsGraph2MeasurmentLabel">
+                <property name="text">
+                 <string>Graph 2 Measurement</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="SettingsGraph2MeasurementComboBox">
+                <item>
+                 <property name="text">
+                  <string>Gyration Tensor</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Coming Soon!</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="SettingsGraphTabGraph3Page">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>286</width>
+            <height>180</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Graph 3</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0">
+            <widget class="QWidget" name="SettingsGraph3Widget" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_7">
+              <item>
+               <widget class="QLabel" name="SettingsGraph3XUnitsLabel">
+                <property name="text">
+                 <string>Graph 3 X Units</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="SettingsGraph3XUnitsLineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="SettingsGraph3YUnitsLabel">
+                <property name="text">
+                 <string>Graph 3 Y Units</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="SettingsGraph3YUnitsLineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="SettingsGraph3MeasurmentLabel">
+                <property name="text">
+                 <string>Graph 3 Measurement</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="SettingsGraph3MeasurementComboBox">
+                <item>
+                 <property name="text">
+                  <string>Gyration Tensor</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Coming Soon!</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="SettingsGraphTabGraph4Page">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>286</width>
+            <height>180</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Graph 4</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QWidget" name="SettingsGraph4Widget" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <item>
+               <widget class="QLabel" name="SettingsGraph4XUnitsLabel">
+                <property name="text">
+                 <string>Graph 4 X Units</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="SettingsGraph4XUnitsLineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="SettingsGraph4YUnitsLabel">
+                <property name="text">
+                 <string>Graph 4 Y Units</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="SettingsGraph4YUnitsLineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="SettingsGraph4MeasurmentLabel">
+                <property name="text">
+                 <string>Graph 4 Measurement</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="SettingsGraph4MeasurementComboBox">
+                <item>
+                 <property name="text">
+                  <string>Gyration Tensor</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Coming Soon!</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="SettingsGraphTabGraph5Page">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>286</width>
+            <height>180</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Graph 5</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="0" column="0">
+            <widget class="QWidget" name="SettingsGraph5Widget" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_9">
+              <item>
+               <widget class="QLabel" name="SettingsGraph5XUnitsLabel">
+                <property name="text">
+                 <string>Graph 5 X Units</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="SettingsGraph5XUnitsLineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="SettingsGraph5YUnitsLabel">
+                <property name="text">
+                 <string>Graph 5 Y Units</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="SettingsGraph5YUnitsLineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="SettingsGraph5MeasurmentLabel">
+                <property name="text">
+                 <string>Graph 5 Measurement</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="SettingsGraph5MeasurementComboBox">
+                <item>
+                 <property name="text">
+                  <string>Gyration Tensor</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Coming Soon!</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
